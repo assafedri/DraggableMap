@@ -1,0 +1,386 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+body {
+  font-family: 'Heebo', sans-serif;
+}
+#canvas-mask {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: url(../img/static.png);
+}
+#canvas-mask header {
+  background: #414042;
+  color: #ffffff;
+  text-align: center;
+  position: relative;
+  padding: 15px;
+  z-index: 1;
+}
+#canvas-mask header h1 {
+  font-size: 6vw;
+  margin: 0 0 5px;
+}
+@media (min-width: 768px) {
+  #canvas-mask header h1 {
+    font-size: 46px;
+  }
+}
+#canvas-mask header h2 {
+  font-size: 3vw;
+}
+@media (min-width: 768px) {
+  #canvas-mask header h2 {
+    font-size: 23px;
+  }
+}
+#canvas-mask .handle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url(../img/map-layer3.png), url(../img/map-layer2.gif), url(../img/map-layer1.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 1859px;
+  width: 1920px;
+  cursor: move;
+  cursor: grab;
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+}
+#canvas-mask .handle .pin {
+  position: absolute;
+}
+#canvas-mask .handle .pin#pin1 {
+  top: 130px;
+  right: 540px;
+}
+#canvas-mask .handle .pin#pin2 {
+  top: 335px;
+  right: 890px;
+}
+#canvas-mask .handle .pin#pin3 {
+  top: 569px;
+  right: 457px;
+}
+#canvas-mask .handle .pin#pin4 {
+  top: 725px;
+  right: 1215px;
+}
+#canvas-mask .handle .pin#pin5 {
+  top: 925px;
+  right: 613px;
+}
+#canvas-mask .handle .pin#pin6 {
+  top: 1180px;
+  right: 710px;
+}
+#canvas-mask .handle .pin#pin7 {
+  top: 1427px;
+  right: 1145px;
+}
+#canvas-mask .handle .pin a {
+  display: block;
+  height: 86px;
+  text-decoration: none;
+  color: #414042;
+  padding: 15px;
+  overflow: hidden;
+}
+#canvas-mask .handle .pin a img {
+  width: 67px;
+  float: right;
+  margin-left: 15px;
+  transition: all 0.4s ease-in-out;
+}
+#canvas-mask .handle .pin a h1 {
+  float: right;
+  vertical-align: top;
+  font-size: 1.25em;
+  line-height: 1.25em;
+  max-width: 190px;
+  border-bottom: 2px solid #414042;
+}
+#canvas-mask .handle .pin a:hover img,
+#canvas-mask .handle .pin a:focus img {
+  transform: scale(1.2);
+}
+#canvas-mask.active .handle {
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+  cursor: -moz-grabbing;
+}
+.popup {
+  position: absolute;
+  max-width: 500px;
+  background: #00548e;
+  display: none;
+  margin-right: 100px;
+  margin-top: 75px;
+  box-sizing: border-box;
+  z-index: 1;
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
+}
+.popup a.close {
+  height: 40px;
+  width: 40px;
+  background: #414042 url(../img/assets/x.svg) no-repeat;
+  background-size: 20px;
+  background-position: center;
+  border-radius: 50%;
+  display: table;
+  position: absolute;
+  left: -20px;
+  top: -20px;
+  text-decoration: none;
+}
+.popup a.close:hover,
+.popup a.close:focus {
+  background-color: #5a595c;
+}
+.popup a.close > span {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  color: #ffffff;
+}
+.popup .pinHeader {
+  display: none;
+}
+.popup .content {
+  padding: 30px;
+  line-height: 1.2;
+  color: #ffffff;
+}
+.popup .content h2 {
+  font-weight: bold;
+}
+.popup .content h3 {
+  font-weight: bold;
+}
+.popup .content p {
+  margin-bottom: 20px;
+}
+.popup .content ul {
+  margin-bottom: 20px;
+}
+.popup .content ul > li {
+  margin-right: 15px;
+}
+.popup .content ul > li:before {
+  content: "- ";
+  margin-right: -7.5px;
+}
+.popup .content a {
+  color: #ffffff;
+  cursor: pointer;
+}
+.popup.mobile-open {
+  position: fixed;
+  left: 0;
+  top: 0 !important;
+  right: inherit !important;
+  max-width: none;
+  width: 100vw;
+  margin: 0;
+  height: 100vh;
+  box-sizing: border-box;
+}
+.popup.mobile-open a.close {
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  border-radius: 0;
+  height: 50px;
+  width: 50px;
+}
+.popup.mobile-open .pinHeader {
+  display: flex;
+  height: 50px;
+  overflow: hidden;
+  padding: 5px;
+  box-sizing: border-box;
+  width: calc(100% - 50px);
+}
+.popup.mobile-open .pinHeader .pinImg {
+  width: 40px;
+  overflow: hidden;
+}
+.popup.mobile-open .pinHeader .pinImg img {
+  width: 100%;
+}
+.popup.mobile-open .pinHeader .pinTitle {
+  display: flex;
+  align-items: center;
+}
+.popup.mobile-open .pinHeader .pinTitle h1 {
+  color: #ffffff;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+.popup.mobile-open .content {
+  box-sizing: border-box;
+  height: calc(100vh - 50px);
+  padding: 15px 30px 50px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.sideNav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(65, 64, 66, 0.5);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-direction: row-reverse;
+  width: 100vw;
+  padding: 5px;
+  box-sizing: border-box;
+}
+.sideNav a {
+  display: block;
+  overflow: hidden;
+  padding: 5px;
+  width: 40px;
+  height: 40px;
+  box-sizing: border-box;
+  margin: 0 5px;
+}
+@media (min-width: 768px) {
+  .sideNav a {
+    width: 50px;
+    height: 50px;
+    margin: 0 10px;
+  }
+}
+.sideNav a img {
+  width: 100%;
+}
+.sideNav h1 {
+  display: none;
+}

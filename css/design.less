@@ -1,0 +1,281 @@
+// CSS Main Settings
+body{
+	font-family: 'Heebo', sans-serif;
+}
+
+#canvas-mask{
+	position: relative;
+	height: 100vh;
+  	width: 100vw;
+	overflow: hidden;
+	background: url(../img/static.png);
+	
+	header{
+		background: @mainColor4;
+		color: @white;
+		text-align: center;
+		position: relative;
+		padding: 15px;
+		z-index: 1;
+		
+		h1{
+			font-size: 6vw;
+			margin: 0 0 5px;
+			
+			@media(min-width: 768px){
+				font-size: 46px;
+			}
+		}
+		
+		h2{
+			font-size: 3vw;
+			
+			@media(min-width: 768px){
+				font-size: 23px;
+			}
+		}
+	}
+	
+	.handle{
+		position: absolute;
+	  	top: 0;
+	  	left: 0; 
+		background-image: url(../img/map-layer3.png), 
+						  url(../img/map-layer2.gif), 
+						  url(../img/map-layer1.png);
+		background-repeat: no-repeat; 
+		background-position: center;
+		height: 1859px;
+		width: 1920px;
+		cursor: move;
+		cursor: grab;
+		cursor: -webkit-grab;
+		cursor: -moz-grab;
+		
+		.pin{
+			position: absolute;
+			
+			&#pin1{top:130px; right:540px}
+			&#pin2{top:335px; right:890px}
+			&#pin3{top:569px; right:457px}
+			&#pin4{top:725px; right:1215px}
+			&#pin5{top:925px; right:613px}
+			&#pin6{top:1180px; right:710px}
+			&#pin7{top:1427px; right:1145px}
+			
+			a{
+				display: block;
+				height: 86px; 
+				text-decoration: none;
+				color: @mainColor4;
+				padding: 15px;
+				overflow: hidden;
+				
+				img{
+					width: 67px;
+					float: right;
+					margin-left: 15px;
+					transition: all .4s ease-in-out;
+				}
+				
+				h1{
+					float: right;
+    				vertical-align: top;
+					font-size: 1.25em;
+					line-height: 1.25em;
+					max-width: 190px;
+					border-bottom: 2px solid @mainColor4;
+				}
+				
+				&:hover, &:focus{
+					img{
+						transform: scale(1.2);
+					}
+				}
+			}
+		}
+	}
+	
+	&.active{
+		.handle{
+			cursor: grabbing;
+			cursor: -webkit-grabbing;
+			cursor: -moz-grabbing;
+		}
+	}
+}
+			
+.popup{  
+	position: absolute;
+	max-width: 500px;
+	background: @mainColor1;
+	display: none;
+	margin-right: 100px;
+	margin-top: 75px;
+	box-sizing: border-box;
+	z-index: 1;
+	box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.2);
+
+	a.close{
+		height: 40px;
+		width: 40px;
+		background: @mainColor4 url(../img/assets/x.svg) no-repeat;
+		background-size: 20px;
+		background-position: center;
+		border-radius: 50%;
+		display: table;
+		position: absolute;
+		left: -20px;
+		top: -20px;
+		text-decoration: none;
+
+		&:hover, &:focus{
+			background-color: lighten(@mainColor4, 10%);
+		}
+
+		> span{
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+			color: @white;
+		}
+	}
+	
+	.pinHeader{
+		display: none;
+	}
+
+	.content{
+		padding: 30px;
+		line-height: 1.2;
+		color: @white;
+
+		h2{
+			font-weight: bold;
+		}
+
+		h3{
+			font-weight: bold;
+		}
+
+		p{
+			margin-bottom: 20px;
+		}
+
+		ul{
+			margin-bottom: 20px;
+
+			> li{
+				margin-right: 15px;
+
+				&:before{
+					content: "- ";
+					margin-right: -7.5px;
+				}
+			}
+		}
+
+		a{
+			color: @white;
+			cursor: pointer;
+		}
+	}
+
+	&.mobile-open{
+		position: fixed;
+		left: 0;
+		top: 0 !important;
+		right: inherit !important;
+		max-width: none;
+		width: 100vw;
+		margin: 0;
+		height: 100vh;
+		box-sizing: border-box;
+
+		a.close{
+			left: 0;
+			top:0;
+			z-index: 1000;
+			border-radius: 0;
+			height: 50px; 
+			width: 50px;
+		}
+		
+		.pinHeader{
+			display: flex;
+			height: 50px;
+    		overflow: hidden;
+			padding: 5px;
+    		box-sizing: border-box;
+			width: ~"calc(100% - 50px)"; 
+			
+			.pinImg{
+				width: 40px;
+				overflow: hidden;
+				
+				img{
+					width: 100%;	
+				}
+			}
+
+			.pinTitle{
+				display: flex;
+    			align-items: center;
+				
+				h1{
+					color: @white; 
+					font-size: 0.8em;
+					font-weight: bold;
+				}				
+			}
+		}
+
+		.content{
+			box-sizing: border-box;
+			height: ~"calc(100vh - 50px)";
+			padding: 15px 30px 50px;
+			overflow-y: auto;
+			-webkit-overflow-scrolling: touch;
+		}
+	}
+}
+
+.sideNav{
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: fade(@mainColor4, 50%);
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-direction: row-reverse;
+    width: 100vw;
+    padding: 5px;
+    box-sizing: border-box;
+	
+	a{
+		display: block;
+		overflow: hidden;
+		padding: 5px;
+		width: 40px;
+		height: 40px;
+    	box-sizing: border-box;
+		margin: 0 5px;
+		
+		@media(min-width:768px){
+			width: 50px;
+			height: 50px;
+			margin: 0 10px;
+		}
+
+		img{
+			width: 100%;
+		}
+	}
+	
+	h1{
+		display: none;
+	}
+}
